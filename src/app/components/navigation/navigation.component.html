@@ -1,0 +1,21 @@
+<nav>
+    <!-- Home-Link, der auf Desktop angezeigt wird -->
+    <li class="home desktop-home">
+      <i class="fas fa-code"></i> Home
+    </li>
+  
+    <!-- Burger-Menü für mobile Ansicht -->
+    <div class="burger-menu" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  
+    <!-- Navigation mit dynamischen Klassen -->
+    <ul [ngClass]="{'active': menuActive}">
+      <li>Links</li>
+      <li>Blog</li>
+      <li>Docs</li>
+    </ul>
+  </nav>
+  

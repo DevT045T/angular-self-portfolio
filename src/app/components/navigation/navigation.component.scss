@@ -1,0 +1,120 @@
+// General Styles
+$primary-color: #3498db;
+$highlight-color: #9b59b6;  // Purple color for the Home link and hover effect
+$font-color: #333;
+$font-family: 'Arial', sans-serif;
+$bg-color: rgba(0, 0, 0, 0.7);  // Background for the mobile menu with blur effect
+
+nav {
+  display: flex;
+  align-items: center;
+  padding: 1em; // Using em for padding
+  width: 60%; // Percentage for width
+  margin: auto;
+
+  // Home Link for Desktop
+  .desktop-home {
+    display: none;
+    color: $highlight-color;
+    font-size: 1.125em; // Using em for font size
+    margin-right: auto; // The Home link is aligned to the left
+    padding: 1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5em; // Using em for spacing between icon and text
+
+    i {
+      font-size: 1.25em; // Using em for icon size
+      color: $highlight-color;
+    }
+
+    @media (min-width: 48em) {  // Equivalent to 768px
+      display: flex;  // Home link is only visible on larger screens (Desktop)
+    }
+  }
+
+  // Burger Menu Positioning
+  .burger-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;  // Using em for gap
+    width: 2em;  // Using em for width
+    height: 1.25em; // Using em for height
+    cursor: pointer;
+    z-index: 10;
+
+    span {
+      background-color: $font-color;
+      height: 0.25em;  // Using em for height of the burger bars
+      width: 100%;
+      border-radius: 0.125em; // Using em for border radius
+    }
+
+    @media (min-width: 48em) {  // Equivalent to 768px
+      display: none;  // The burger menu is hidden on desktop (larger screens)
+    }
+  }
+
+  // Menu is hidden by default
+  ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: $font-color;
+    font-family: $font-family;
+    font-size: 1em;  // Using em for font size
+    margin-left: auto;
+    gap: 2em;  // Using em for space between the links
+
+    // Links in the navigation
+    li {
+      padding: 0.625em 0.9375em;  // Using em for padding
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $highlight-color;
+        text-shadow: 0 0 0.625em $highlight-color; // Using em for text-shadow size
+      }
+    }
+
+    // Mobile Menu - blurry background when active
+    &.active {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: $bg-color;
+      backdrop-filter: blur(0.3125em); // Using em for blur effect
+      height: 100vh;
+      z-index: 5;
+
+      li {
+        padding: 1em;
+        color: white;
+
+        &:hover {
+          color: $highlight-color;
+        }
+      }
+    }
+
+    // Mobile Menu - Centering menu both vertically and horizontally
+    @media (max-width: 48em) {  // Equivalent to 768px
+      display: none;  // By default, hide the menu on mobile devices
+
+      &.active {
+        display: flex;
+        align-items: center;  // Center vertically
+        justify-content: center;  // Center horizontally
+        height: 100vh;  // Ensure the menu takes full height
+      }
+    }
+  }
+}

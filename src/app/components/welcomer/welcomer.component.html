@@ -1,0 +1,59 @@
+<ng-container *ngIf="ready">
+    <!-- Logo Section -->
+    <div class="logo-container">
+        <!-- Hero Logo -->
+        <img class="hero_logo" src="assets/images/d358fa4534d92541b24fbc37862a6c31.jpg" alt="Logo">
+
+        <!-- Online Status Indicator -->
+        <div class="online-status" [ngClass]="userStatus"></div>
+    </div>
+
+    <!-- Title -->
+    <h1>t045t</h1>
+
+    <!-- Social Media Links -->
+    <div class="hero_socials">
+        <div>
+            <a href="" class="fab fa-github" target="_blank" aria-label="GitHub"></a>
+        </div>
+        <div>
+            <a href="" class="fab fa-stack-overflow" target="_blank" aria-label="Stack Overflow"></a>
+        </div>
+        <div>
+            <a href="https://discordid.netlify.app/?id={{uid}}" class="fab fa-discord" target="_blank"
+                aria-label="Discord"></a>
+        </div>
+    </div>
+
+    <!-- Terminal-like Bio -->
+    <div class="bio">
+        <pre><code>
+t045t&#64;web:~$ whoami
+> Julian
+
+t045t&#64;web:~$ country
+> Germany
+
+t045t&#64;web:~$ profession
+> Fullstack Developer
+
+t045t&#64;web:~$ contact
+> Email: info&#64;t045t.dev
+> Ask me about: PHP, MySQL, Angular & Linux
+    </code></pre>
+    </div>
+
+
+    <!-- Spotify Widget -->
+    <div class="spotify-widget" *ngIf="listening_to_spotify">
+        <div class="spotify-details">
+            <img src="{{ spotify.album_art_url }}" alt="Album Art">
+            <div class="song-info">
+                <div class="song-title">{{ spotify.song }}</div>
+                <div class="artist-name">{{ spotify.artist }}</div>
+                <div class="album-name">{{ spotify.album }}</div>
+                <a href="https://open.spotify.com/track/{{ spotify.track_id }}" class="open-btn" target="_blank">Open on Spotify</a>
+            </div>
+        </div>
+    </div>
+</ng-container>
