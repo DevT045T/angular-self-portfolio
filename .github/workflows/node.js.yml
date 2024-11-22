@@ -1,39 +1,24 @@
-name: Angular Build
-
+# --For angular 17+ version that support Node.js 18.x
+name: Deploy Angular App
 on:
   push:
-    branches: [ "develop" ]
-  pull_request:
-    branches: [ "develop" ]
-
+    branches:
+      - develop
 jobs:
-  angular:
-    name: Angular Build
+  build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20.x, 22.x]  # Hier definierst du, welche Node.js-Versionen getestet werden
     steps:
-      # Checkout des Quellcodes
-      - name: Checkout the source code
-        uses: actions/checkout@v3
-
-      # Setup Node.js (dynamisch basierend auf der Version im Matrix)
-      - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}  # Hier wird die Version verwendet, die in der Matrix definiert ist
-          cache: 'npm'
-          cache-dependency-path: package-lock.json
-
-      # Installiere die Abhängigkeiten
-      - name: Install dependencies
-        run: npm ci
-
-      # Führe Tests aus
-      - name: Run tests
-        run: npm run test:ci
-
-      # Baue die Anwendung
-      - name: Build
-        run: npm run build
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.x' # Use Node.js 18.x, compatible with Angular 17+
+    - name: Install pnpm
+      run: npm install -g pnpm # Install pnpm globally
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile # Use pnpm to install dependencies with lockfile integrity
+    - name: Build Angular project
+      run: pnpm build -- --configuration production # Build the project using pnpm
+    - name: Run tests
+      run: pnpm test # Run tests using pnpm
